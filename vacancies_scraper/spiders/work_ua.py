@@ -5,11 +5,13 @@ import scrapy
 from scrapy.http import Response
 from w3lib.html import remove_tags
 
+from config import WORK_UA_URL
+
 
 class WorkUaSpider(scrapy.Spider):
     name = "work_ua"
     allowed_domains = ["www.work.ua"]
-    start_urls = ["https://www.work.ua/jobs-python/"]
+    start_urls = [WORK_UA_URL]
 
     def parse(self, response: Response, **kwargs) -> Generator:
         for vacancy in response.css("div.card.job-link"):
@@ -81,3 +83,7 @@ class WorkUaSpider(scrapy.Spider):
         if not html_text:
             return None
         return remove_tags(html_text).strip()
+
+    @classmethod
+    def update_start_urls(cls, position):
+        cls.start_urls = [(cls.start_urls[0] + position)]
