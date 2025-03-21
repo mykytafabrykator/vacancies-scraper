@@ -6,8 +6,13 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+from config import SCRAPING_OUTPUT_FILE
 
 BOT_NAME = "vacancies_scraper"
+
+FEED_FORMAT = "csv"
+FEED_URI = SCRAPING_OUTPUT_FILE
+FEED_OVERWRITE = True
 
 SPIDER_MODULES = ["vacancies_scraper.spiders"]
 NEWSPIDER_MODULE = "vacancies_scraper.spiders"
