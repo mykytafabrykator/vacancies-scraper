@@ -11,7 +11,7 @@ os.environ.setdefault(
 )
 
 
-def scrape_vacancies():
+def scrape_vacancies(position: str):
     print("\n[INFO] Scraping started!\n")
 
     if os.path.exists(SCRAPING_OUTPUT_FILE):
@@ -24,6 +24,7 @@ def scrape_vacancies():
     process = CrawlerProcess(get_project_settings())
 
     try:
+        WorkUaSpider.update_start_urls(position)
         process.crawl(WorkUaSpider)
         process.start()
     except Exception as e:
