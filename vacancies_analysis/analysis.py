@@ -1,7 +1,6 @@
 import csv
 import os
 import re
-from pathlib import Path
 
 import pandas as pd
 import nltk
@@ -13,7 +12,8 @@ from config import (
     TECHNOLOGIES_TO_ANALYZE,
     SCRAPING_DATA_PATH,
     ANALYSIS_DATA_PATH,
-    ANALYSIS_OUTPUT_FILE
+    ANALYSIS_OUTPUT_FILE,
+    SCRAPING_OUTPUT_FILE
 )
 
 nltk.download("stopwords")
@@ -22,11 +22,10 @@ nltk.download("punkt")
 STOPWORDS = set(stopwords.words("english"))
 
 
-def load_data(folder_path):
+def load_data(file_path):
     return [
         row["description"]
-        for file in Path(folder_path).glob("*.csv")
-        for row in csv.DictReader(open(file, "r", encoding="utf-8"))
+        for row in csv.DictReader(open(file_path, "r", encoding="utf-8"))
         if "description" in row and row["description"].strip()
     ]
 
@@ -81,7 +80,7 @@ def analyze_technologies():
     else:
         print("[INFO] Output folder found!")
 
-    descriptions = load_data(SCRAPING_DATA_PATH)
+    descriptions = load_data(SCRAPING_OUTPUT_FILE)
 
     tech_counts = count_technologies(descriptions)
 

@@ -1,5 +1,7 @@
 # flake8: noqa
 from pathlib import Path
+import uuid
+from datetime import date
 
 WORK_UA_URL = "https://work.ua/jobs-"
 ROBOTA_UA_URL = "https://robota.ua/zapros/"
@@ -9,8 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent
 SCRAPING_DATA_PATH = BASE_DIR / "vacancies_scraper" / "data"
 ANALYSIS_DATA_PATH = BASE_DIR / "vacancies_analysis" / "data"
 
-SCRAPING_OUTPUT_FILE = SCRAPING_DATA_PATH / "vacancies.csv"
-ANALYSIS_OUTPUT_FILE = ANALYSIS_DATA_PATH / "tech_stat.csv"
+ID = f"{uuid.uuid4().hex[:8]}"
+
+SCRAPING_OUTPUT_FILE = SCRAPING_DATA_PATH / f"{date.today()}-{ID}-vacancies.csv"
+ANALYSIS_OUTPUT_FILE = ANALYSIS_DATA_PATH / f"{date.today()}-{ID}-stats.csv"
+ANALYSIS_RATING_IMAGE = ANALYSIS_DATA_PATH / f"{date.today()}-{ID}-vacancies-rating.png"
 
 TECHNOLOGIES_TO_ANALYZE = [
     # Programming languages
