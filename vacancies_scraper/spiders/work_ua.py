@@ -86,4 +86,4 @@ class WorkUaSpider(scrapy.Spider):
 
     @classmethod
     def update_start_urls(cls, position):
-        cls.start_urls = [(cls.start_urls[0] + position)]
+        cls.start_urls = [(cls.start_urls[0] + position + "/")]

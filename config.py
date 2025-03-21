@@ -4,7 +4,7 @@ import uuid
 from datetime import date
 
 WORK_UA_URL = "https://work.ua/jobs-"
-ROBOTA_UA_URL = "https://robota.ua/zapros/"
+DOU_URL = "https://jobs.dou.ua/vacancies/?category="
 
 BASE_DIR = Path(__file__).resolve().parent
 

@@ -1,6 +1,8 @@
 import os
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
+
+from vacancies_scraper.spiders.dou import DouSpider
 from vacancies_scraper.spiders.work_ua import WorkUaSpider
 
 from config import SCRAPING_OUTPUT_FILE
@@ -11,7 +13,7 @@ os.environ.setdefault(
 )
 
 
-def scrape_vacancies(position: str):
+def scrape_vacancies(platform: str = "dou", position: str = "Python"):
     print("\n[INFO] Scraping started!\n")
 
     if os.path.exists(SCRAPING_OUTPUT_FILE):
@@ -24,8 +26,12 @@ def scrape_vacancies(position: str):
     process = CrawlerProcess(get_project_settings())
 
     try:
-        WorkUaSpider.update_start_urls(position)
-        process.crawl(WorkUaSpider)
+        if platform == "workua":
+            WorkUaSpider.update_start_urls(position)
+            process.crawl(WorkUaSpider)
+        else:
+            DouSpider.update_start_urls(position)
+            process.crawl(DouSpider)
         process.start()
     except Exception as e:
         print(f"[ERROR] {e}")

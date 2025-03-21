@@ -14,6 +14,8 @@ FEED_FORMAT = "csv"
 FEED_URI = SCRAPING_OUTPUT_FILE
 FEED_OVERWRITE = True
 
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+
 SPIDER_MODULES = ["vacancies_scraper.spiders"]
 NEWSPIDER_MODULE = "vacancies_scraper.spiders"
 
