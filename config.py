@@ -6,8 +6,11 @@ ROBOTA_UA_URL = "https://robota.ua/zapros/"
 
 BASE_DIR = Path(__file__).resolve().parent
 
-SCRAPING_OUTPUT_FILE = BASE_DIR / "vacancies_scraper" / "data" / "vacancies.csv"
-ANALYSIS_OUTPUT_FILE = BASE_DIR / "vacancies_analysis" / "data" / "tech_stat.csv"
+SCRAPING_DATA_PATH = BASE_DIR / "vacancies_scraper" / "data"
+ANALYSIS_DATA_PATH = BASE_DIR / "vacancies_analysis" / "data"
+
+SCRAPING_OUTPUT_FILE = SCRAPING_DATA_PATH / "vacancies.csv"
+ANALYSIS_OUTPUT_FILE = ANALYSIS_DATA_PATH / "tech_stat.csv"
 
 TECHNOLOGIES_TO_ANALYZE = [
     # Programming languages
