@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 from config import ANALYSIS_OUTPUT_FILE, ANALYSIS_RATING_IMAGE
 
+
 def plot_top_technologies(top_n: int = 20):
     df = pd.read_csv(ANALYSIS_OUTPUT_FILE)
     top_tech = df.sort_values(by="Count", ascending=False).head(top_n)
@@ -21,6 +22,6 @@ def plot_top_technologies(top_n: int = 20):
 
     print(f"Image saved: {ANALYSIS_RATING_IMAGE.resolve()}")
 
-# 📌 Використання:
+
 if __name__ == "__main__":
     plot_top_technologies()
